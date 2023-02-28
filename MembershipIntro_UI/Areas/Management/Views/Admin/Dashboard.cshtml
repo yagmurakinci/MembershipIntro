@@ -1,0 +1,46 @@
+﻿@model List<PhoneTypeCountModel>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Management/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div class="row" style="margin-left:5px">
+    @if (ViewBag.DashboardErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.DashboardErrorMessage
+        </div>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <!-- small box -->
+            <div class="col-3">
+                 <div class="small-box bg-info">
+              <div class="inner">
+                <h3>@item.Quantity</h3>
+
+                <p>@item.Name</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            </div>
+
+        }
+    }
+
+</div>
+
+@section adminscripts{
+    <script>
+$(document).ready(function() {
+    alert("b");
+});
+    </script>
+
+}
+

@@ -1,0 +1,53 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    //Layout = "~/Views/Share/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        @if (TempData["RegisterSuccessMsg"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>BİLGİ!</strong> @TempData["RegisterSuccessMsg"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        @if (TempData["ResetPasswordMessage"]!=null)
+        {
+            <div class="alert alert-success">
+                <h6>@TempData["ResetPasswordMessage"]</h6>
+            </div>
+        }
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <div class="form-group">
+                <label>Kullanıcı adı:</label>
+                <input type="text" asp-for="Username"
+                       class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Şifre:</label>
+                <input type="password" name="Password"
+                       class="form-control" />
+            </div>
+
+            <div>
+                <a asp-action="ForgetPassword" asp-controller="Account">Şifremi Unuttum!</a> <br /> <br />
+
+                <button type="submit"
+                        class="btn btn-primary"
+                        style=color:white>
+                    Giriş Yap
+                </button>
+
+                <a class="btn btn-danger" type="button" asp-controller="Account" asp-action="Register">KAYIT OL</a>
+            </div>
+        </form>
+    </div>
+</div>

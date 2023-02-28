@@ -1,0 +1,73 @@
+﻿@model MemberPhoneViewModel
+@{
+    ViewData["Title"] = "AddPhone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-9 offset-1 offset-1">
+        <form asp-controller="Home" asp-action="AddPhone" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label>Telefon Türü/Tipi Seçiniz:</label>
+                <select id="phonetypeselect" class="form-control"
+                        asp-for="PhoneTypeId">
+                    @foreach (var item in ViewBag.PhoneTypes)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    } @*foreach bitti*@
+                    <option value="0">Diğer</option>
+                </select> <br />
+                <input type="text" asp-for="AnotherPhoneTypeName" placeholder="Telefon tipi giriniz..."
+                       class="form-control" id="phonetypename" /> <br />
+
+            </div>
+            <div class="form-group">
+                <label>Telefon: 0 (5XX) XXX AA BB</label>
+                <input type="text" asp-for="Phone" class="form-control" required /> <br />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+            <input type="hidden" asp-for="MemberId" />
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            if (@ViewBag.PhoneTypes.Count== 0) {
+                $("#phonetypeselect").prop('disabled', true); // combo pasif
+                $("#phonetypename").prop('disabled', false); //input aktif
+            }
+            else {
+                $("#phonetypeselect").prop('disabled', false); // combo aktif
+                $("#phonetypename").prop('disabled', true); // input pasif
+            }
+
+            var selectedOption = $("#phonetypeselect").val();
+            ChangeInputDisable(selectedOption);
+
+            $('#phonetypeselect').on('change', function () {
+                $("#phonetypename").val(''); //temizlik
+                var selectedOption = $(this).val();
+                ChangeInputDisable(selectedOption);
+            });
+
+            function ChangeInputDisable(optionValue) {
+                if (optionValue==0)
+                {
+                    //"Diğer" yazan seçeneğe tıkladı
+                    $("#phonetypename").prop('disabled', false);
+                }
+                else
+                {
+                    $("#phonetypename").prop('disabled', true);
+
+                }
+            }
+        });
+    </script>
+
+}
+

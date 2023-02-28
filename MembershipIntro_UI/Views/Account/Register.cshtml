@@ -1,0 +1,75 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Şimdi Kayıt Olabilirsiniz</h3>
+
+<div class="row" style="margin-right:5px;">
+    <div class="col-5">
+        <form asp-controller="Account" asp-action="Register" method="post">
+           <div class="text-danger" asp-validation-summary="All"></div>
+
+            <div class="form-group">
+                 <label style="font-weight:bold;">İsminiz:</label>
+                 <input  type="text" asp-for="FirstName" 
+                 class="form-control" />
+            </div> <br />
+            <div class="form-group">
+                 <label style="font-weight:bold;">Soyisminiz:</label>
+                 <input  type="text" asp-for="LastName" 
+                 class="form-control" />
+            </div> <br />
+
+            <div class="form-group">
+                 <label style="font-weight:bold;">Kullanıcı Adınız:</label>
+                 <input  type="text" asp-for="UserName" 
+                 class="form-control" />
+            </div> <br />
+
+            <div class="form-group">
+                 <label style="font-weight:bold;">Emailiniz:</label>
+                 <input  type="email" asp-for="Email" 
+                 class="form-control" />
+            </div> <br />
+
+            <div class="form-group">               
+                 <label style="font-weight:bold;">Şifreniz:</label>
+                 <span style="color:gray;">(8 haneli şifre giriniz)</span>
+                 <input  type="password" asp-for="Password" 
+                 class="form-control" />
+            </div> <br />
+
+               <div class="form-group">
+                 <label style="font-weight:bold;">Şifre Tekrarınız:</label>
+                 <input  type="password" asp-for="ConfirmPassword" 
+                 class="form-control" />
+            </div> <br />
+
+               <div class="form-group">
+                 <label style="font-weight:bold;">Doğum Tarihiniz:</label>
+                 <input  type="date" asp-for="BirthDate" 
+                 class="form-control" />
+            </div> <br />
+               <div class="form-group">
+                 <label style="font-weight:bold;">Cinsiyetiniz:</label>
+               <select asp-for="Gender"  class="form-control" >
+                   <option value="1">Kadın</option>
+                   <option value="2">Erkek</option>
+               </select>
+            </div> <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">
+                    Kayıt Ol</button>
+                <a class="btn btn-primary" type="button" asp-controller="Account" asp-action="Login">GİRİŞ YAP</a>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-7">
+        <img  src="~/pictures/Membership.webp" 
+        style="position: fixed "/> 
+    </div>
+</div>
